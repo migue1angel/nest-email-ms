@@ -1,16 +1,23 @@
+import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 import { envs } from './config/envs';
-import { Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice(AppModule, {
-    transport: Transport.TCP,
-    options: {
-      port: envs.PORT,
+  const logger = new Logger('Main Microservice');
+
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+    AppModule,
+    {
+      transport: Transport.TCP,
+      options: {
+        port: 3001,
+      },
     },
-  });
+  );
+
   await app.listen();
-  console.log(`Application is running on: ${envs.PORT}`);
+  logger.log(`Application is running on: ${envs.PORT}`);
 }
 bootstrap();

@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { EmailService } from './email.service';
 import { CreateEmailDto } from './dto/create-email.dto';
@@ -13,7 +13,7 @@ export class EmailController {
     return this.emailService.create(createEmailDto);
   }
 
-  @MessagePattern('findAllEmail')
+  @MessagePattern('findAllEmails')
   findAll() {
     return this.emailService.findAll();
   }

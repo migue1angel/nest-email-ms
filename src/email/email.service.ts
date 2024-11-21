@@ -8,8 +8,8 @@ export class EmailService {
     return 'This action adds a new email';
   }
 
-  findAll() {
-    return `This action returns all email`;
+  findAll() { 
+    return 'This action returns all emails';
   }
 
   findOne(id: number) {
