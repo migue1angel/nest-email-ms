@@ -3,11 +3,20 @@ import 'dotenv/config';
 
 interface EnvsSchema {
   PORT: number;
+  MAILER_SERVICE: string;
+  MAILER_KEY: string;
+  MAILER_EMAIL: string;
+  MAILER_NAME: string;
 }
 
 const envsSchema = joi
   .object({
     PORT: joi.number().required(),
+    MAILER_EMAIL: joi.string().required(),
+    MAILER_SERVICE: joi.string().required(),
+    MAILER_KEY: joi.string().required(),
+    MAILER_NAME: joi.string().required(),
+
   })
   .unknown(true);
 
@@ -19,4 +28,8 @@ if (error) {
 
 export const envs: EnvsSchema = {
   PORT: value.PORT,
+  MAILER_SERVICE:value.MAILER_SERVICE,
+  MAILER_KEY:value.MAILER_KEY,
+  MAILER_EMAIL:value.MAILER_EMAIL,
+  MAILER_NAME:value.MAILER_NAME,
 };
