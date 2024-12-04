@@ -4,6 +4,7 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
 import { envs } from './config/envs';
 
+// Archivo README: distribución del trabajo grupal
 async function bootstrap() {
   const logger = new Logger('Main Microservice');
   

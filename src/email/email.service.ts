@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as nodemailer from 'nodemailer';
-import { SendEmailOptions } from './interfaces/send-email.interface';
 import { envs } from 'src/config/envs';
+import { SendEmailDto } from './dto/send-email.dto';
 
 @Injectable()
 export class EmailService {
@@ -13,8 +13,8 @@ export class EmailService {
     },
   });
 
-  async sendEmail(options: SendEmailOptions): Promise<boolean> {
-    const { content, title, subject, to, attachments = [] } = options;
+  async sendEmail(sendEmailDto: SendEmailDto): Promise<boolean> {
+    const { content, title, subject, to = [] } = sendEmailDto;
 
     const htmlBody = `
     <h3> ${title}</h3>
@@ -29,13 +29,11 @@ export class EmailService {
         bcc: to,
         subject,
         html: htmlBody,
-        attachments: attachments,
+        // attachments: attachments,
       });
       return true;
     } catch (error) {
-      console.log(error);
-
-      return false;
+      console.error(error);
     }
   }
 }

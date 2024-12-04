@@ -1,4 +1,4 @@
-import { Controller} from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { EmailService } from './email.service';
 import { SendEmailDto } from './dto/send-email.dto';
@@ -9,6 +9,6 @@ export class EmailController {
 
   @MessagePattern('sendEmail')
   create(@Payload() sendEmailDto: SendEmailDto) {
-    return this.emailService.sendEmail(sendEmailDto).catch((error) => console.log(error));
+    return this.emailService.sendEmail(sendEmailDto);
   }
 }

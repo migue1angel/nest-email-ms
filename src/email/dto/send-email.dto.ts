@@ -23,4 +23,5 @@ export class SendEmailDto {
   @IsString()
   @IsNotEmpty()
   content: string;
+
 }
